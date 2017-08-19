@@ -38,7 +38,7 @@ function mapDispatchToProps (dispatch) {
 	return {
 		getCategoriesFromReadableAPI: () => {
 			getCategories().then((categories) => {
-				dispatch({type: FETCH_CATEGORIES})
+				dispatch({type: FETCH_CATEGORIES, payload: categories})
 			})
 		}
 	}

@@ -4,7 +4,7 @@ class CategoryList extends Component {
 	render() {
 		return (
 			<ol>
-			{this.props.categories.items.map((category) =>(
+			{this.props.categories && this.props.categories.items.map((category) =>(
 				<li key={category.path}>
 					{category.name}
 				</li>
