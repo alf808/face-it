@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
+// import { Link } from 'react-router-dom'
 
 class CategoryList extends Component {
 	render() {
 		return (
-			<ol>
-			{this.props.categories && this.props.categories.items.map((category) =>(
-				<li key={category.path}>
-					{category.name}
+			<ul className="category-list">
+			{this.props.categories.items.map((category) =>(
+				<li key={category.name}>
+						{category.name}
 				</li>
 			))}
-			</ol>
+		</ul>
 		)
 	}
 }

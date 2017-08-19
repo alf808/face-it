@@ -19,11 +19,13 @@ class App extends Component {
 					<img src={logo} className="App-logo" alt="logo" />
 					<h2>Welcome to React</h2>
 				</div>
-				<p className="App-intro">
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>
-				<div>
-					<CategoryList categories={this.props.categories} />
+				<div className="main-body">
+					<div className="nav-left">
+						<CategoryList categories={this.props.categories} />
+					</div>
+					<div className="content">
+						test
+					</div>
 				</div>
 			</div>
 		);

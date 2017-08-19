@@ -18,6 +18,25 @@
   font-size: large;
 }
 
+.main-body {
+  display: flex;
+  /*flex-direction: column;*/
+}
+
+.category-list {
+	list-style-type: none;
+  text-align: left;
+}
+
+.content {
+  flex: 3;
+}
+
+.nav-left {
+  flex: 1;
+  order: -1;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
