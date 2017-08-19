@@ -8,6 +8,7 @@ import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import registerServiceWorker from './registerServiceWorker'
 import reducer from './reducers'
+import { BrowserRouter } from 'react-router-dom'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -20,6 +21,8 @@ const store = createStore(
 
 ReactDOM.render(
 	<Provider store={store}>
+		<BrowserRouter>
 		<App />
+		</BrowserRouter>
 	</Provider>, document.getElementById('root'));
 registerServiceWorker();
