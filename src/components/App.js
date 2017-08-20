@@ -1,15 +1,25 @@
 import React, { Component } from 'react'
 import logo from '../logo.svg'
 import '../App.css'
-import { getCategories } from '../utils/api'
+import * as ReadableAPI from '../utils/api'
 import { connect } from 'react-redux'
-import { FETCH_CATEGORIES } from '../actions'
+import { fetchPosts } from '../actions'
 import CategoryList from './CategoryList'
+import PostList from './PostList'
 
 class App extends Component {
+	state = {
+		categories: [],
+		posts: [],
+	}
 
 	componentDidMount() {
-		this.props.getCategoriesFromReadableAPI()
+		ReadableAPI.getCategories().then((categories) => {
+			this.setState({ categories })
+		})
+		.then(ReadableAPI.getAllPosts().then((posts) => {
+			this.setState({ posts })
+		}))
 	}
 
 	render() {
@@ -21,10 +31,11 @@ class App extends Component {
 				</div>
 				<div className="main-body">
 					<div className="nav-left">
-						<CategoryList categories={this.props.categories} />
+						<CategoryList categories={this.state.categories} />
 					</div>
 					<div className="content">
-						test
+						<PostList posts={this.state.posts} />
+
 					</div>
 				</div>
 			</div>
@@ -32,18 +43,23 @@ class App extends Component {
 	}
 }
 
-function mapStateToProps ({categories}) {
-	return {categories}
+function mapStateToProps ({ categories, posts }) {
+	return { categories, posts: posts.items }
 }
 
-function mapDispatchToProps (dispatch) {
-	return {
-		getCategoriesFromReadableAPI: () => {
-			getCategories().then((categories) => {
-				dispatch({type: FETCH_CATEGORIES, payload: categories})
-			})
-		}
-	}
-}
+// function mapDispatchToProps (dispatch) {
+// 	return {
+		// getCategoriesFromReadableAPI: () => {
+		// 	getCategories().then((data) => {
+		// 		dispatch(fetchCategories(data))
+		// 	})
+		// },
+		// getAllPostsFromReadableAPI: () => {
+		// 	getAllPosts().then((data) => {
+		// 		dispatch(fetchPosts(data))
+		// 	})
+		// }
+// 	}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)

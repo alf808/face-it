@@ -28,6 +28,10 @@
   text-align: left;
 }
 
+.post-list {
+  list-style-type: none;
+}
+
 .content {
   flex: 3;
 }

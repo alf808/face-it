@@ -7,7 +7,7 @@ const initialState = {
 export function categories(state=initialState, action) {
 	switch(action.type) {
 		case FETCH_CATEGORIES:
-			return { ...state, items: action.payload }
+			return { ...state, items: action.categories }
 		default:
 			return state
 	}
