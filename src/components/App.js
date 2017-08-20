@@ -4,6 +4,7 @@ import '../App.css'
 import * as ReadableAPI from '../utils/api'
 import { connect } from 'react-redux'
 import { fetchPosts } from '../actions'
+import { Route } from 'react-router-dom'
 import CategoryList from './CategoryList'
 import PostList from './PostList'
 
@@ -23,6 +24,8 @@ class App extends Component {
 	}
 
 	render() {
+		const { categories, posts } = this.state
+
 		return (
 			<div className="App">
 				<div className="App-header">
@@ -31,12 +34,13 @@ class App extends Component {
 				</div>
 				<div className="main-body">
 					<div className="nav-left">
-						<CategoryList categories={this.state.categories} />
+						<CategoryList categories={categories} />
 					</div>
-					<div className="content">
-						<PostList posts={this.state.posts} />
-
-					</div>
+					<Route exact path="/" render={() => (
+						<div className="content">
+							<PostList posts={posts} />
+						</div>
+					)} />
 				</div>
 			</div>
 		);
