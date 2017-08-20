@@ -1,30 +1,25 @@
 import React, { Component } from 'react'
 import logo from '../logo.svg'
 import '../App.css'
-import * as ReadableAPI from '../utils/api'
+// import * as ReadableAPI from '../utils/api'
 import { connect } from 'react-redux'
-import { fetchPosts } from '../actions'
+import { fetchCategories } from '../actions'
 import { Route } from 'react-router-dom'
 import CategoryList from './CategoryList'
-import PostList from './PostList'
+// import PostList from './PostList'
 
 class App extends Component {
-	state = {
-		categories: [],
-		posts: [],
-	}
+	// state = {
+		// categories: [],
+		// posts: [],
+	// }
 
 	componentDidMount() {
-		ReadableAPI.getCategories().then((categories) => {
-			this.setState({ categories })
-		})
-		.then(ReadableAPI.getAllPosts().then((posts) => {
-			this.setState({ posts })
-		}))
+		fetchCategories()
 	}
 
 	render() {
-		const { categories, posts } = this.state
+		// const { categories, posts } = this.state
 
 		return (
 			<div className="App">
@@ -34,11 +29,11 @@ class App extends Component {
 				</div>
 				<div className="main-body">
 					<div className="nav-left">
-						<CategoryList categories={categories} />
+						<CategoryList />
 					</div>
 					<Route exact path="/" render={() => (
 						<div className="content">
-							<PostList posts={posts} />
+							PostList posts=posts
 						</div>
 					)} />
 				</div>
@@ -47,8 +42,8 @@ class App extends Component {
 	}
 }
 
-function mapStateToProps ({ categories, posts }) {
-	return { categories, posts: posts.items }
+function mapStateToProps ({ categories }) {
+	return { categories }
 }
 
 // function mapDispatchToProps (dispatch) {
